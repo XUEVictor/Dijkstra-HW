@@ -44,7 +44,7 @@ public:
 
     void parser(int argc, char **argv);
     void routing();
-    void output(int argc, char **argv,std::pair<std::vector<int>,int> array);
+    void output(int argc, char **argv, std::pair<std::vector<int>, int> array);
     std::pair<int, int> Num2Pos(int Num);
     /////////////////////////////declaration/////////////////////////////
 

@@ -24,24 +24,26 @@ int main(int argc, char **argv)
     // }
     ////////////////////////monotonic route///////////////////////
 
-    graph.ShowAdjInfo(10);
-    // std::vector<int> path;
+    // graph.ShowAdjInfo(10);
+    std::pair<std::vector<int>, int> path;
 
     int S_Num = graph.Pos2Num(std::pair<int, int>(monotonic.sx, monotonic.sy));
 
     int E_Num = graph.Pos2Num(std::pair<int, int>(monotonic.tx, monotonic.ty));
-    graph.Dijkstra(S_Num);
-    std::pair<std::vector<int>, int> path;
-
+    // graph.Dijkstra(S_Num);
+    // path = graph.GetPath(E_Num);
+    // for (std::vector<int>::iterator itr = path.begin(); itr != path.end(); itr++)
+    // {
+    //     std::cout<<*itr<<std::endl;
+    // }
+    graph.cal_cost(S_Num);
     path = graph.GetPath(E_Num);
-    for (std::vector<int>::iterator itr = path.first.begin(); itr != path.first.end(); itr++)
-    {
-        std::cout << *itr << std::endl;
-    }
-    cout << "............monotonic routing done!!!!!!.............." << endl;
-    /////////////////////output/////////////////////
 
-    monotonic.output(argc, argv, path);
+    // monotonic.routing();
+    cout << "............monotonic routing done!!!!!!.............." << endl;
+
+    /////////////////////output/////////////////////
+    monotonic.output(argc, argv,path);
     cout << "............output done!!!!!!.............." << endl;
 
     return 0;

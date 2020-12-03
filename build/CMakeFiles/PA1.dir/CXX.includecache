@@ -50,11 +50,11 @@ cmath
 string
 -
 
-/home/ivam/HW/Dijkstra-HW/src/GridGraph.cpp
+/home/ivam/HW/Dijkstra-HW2/src/GridGraph.cpp
 GridGraph.h
-/home/ivam/HW/Dijkstra-HW/src/GridGraph.h
+/home/ivam/HW/Dijkstra-HW2/src/GridGraph.h
 
-/home/ivam/HW/Dijkstra-HW/src/heap.cpp
+/home/ivam/HW/Dijkstra-HW2/src/heap.cpp
 iostream
 -
 vector
@@ -68,15 +68,15 @@ string
 sstream
 -
 heap.h
-/home/ivam/HW/Dijkstra-HW/src/heap.h
+/home/ivam/HW/Dijkstra-HW2/src/heap.h
 
-/home/ivam/HW/Dijkstra-HW/src/main.cpp
+/home/ivam/HW/Dijkstra-HW2/src/main.cpp
 parser.h
-/home/ivam/HW/Dijkstra-HW/src/parser.h
+/home/ivam/HW/Dijkstra-HW2/src/parser.h
 GridGraph.h
-/home/ivam/HW/Dijkstra-HW/src/GridGraph.h
+/home/ivam/HW/Dijkstra-HW2/src/GridGraph.h
 
-/home/ivam/HW/Dijkstra-HW/src/parser.cpp
+/home/ivam/HW/Dijkstra-HW2/src/parser.cpp
 parser.h
-/home/ivam/HW/Dijkstra-HW/src/parser.h
+/home/ivam/HW/Dijkstra-HW2/src/parser.h
 

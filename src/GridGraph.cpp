@@ -4,6 +4,7 @@
         printf("Press Enter key to continue..."); \
         fgetc(stdin);                             \
     }
+
 void GridGraph::PrintDataArray(std::vector<int> array)
 {
     for (int i = 0; i < array.size(); i++)
@@ -85,10 +86,6 @@ void GridGraph::Dijkstra(int Start)
             std::cout << "start  :" << u << std::setw(8) << "To : " << (*itr).first << std::setw(12) << "Distant : " << dis[(*itr).first] << std::endl;
         }
     }
-    std::cout << "\nprint predecessor:\n";
-    PrintDataArray(pi);
-    std::cout << "\nprint distance:\n";
-    PrintDataArray(dis);
 }
 
 void GridGraph::ShowData(std::vector<int> array)
@@ -118,12 +115,11 @@ void GridGraph::ShowAdjInfo(int idx)
     {
         std::cout << (*itr).first << std::setw(4) << (*itr).second << std::endl;
     }
-    //SysStop();
 }
 
-std::pair<std::vector<int>, int> GridGraph::GetPath(int end)
+std::pair<std::vector<int>,int> GridGraph::GetPath(int end)
 {
-    std::pair<std::vector<int>, int> result;
+    std::pair<std::vector<int>,int> result;
     int size = 1;
     bool Done = false;
     std::vector<int> Path;
@@ -160,10 +156,9 @@ std::pair<std::vector<int>, int> GridGraph::GetPath(int end)
     }
     std::cout << "======================================" << std::endl;
     result.first = Path;
-    result.second = dis[dis.size() - 1];
+    result.second =  dis[dis.size() - 1];
     return result;
 }
-
 std::pair<int, int> GridGraph::Num2Pos(int Num)
 {
     //std::cout<<Num<<std::endl;
@@ -240,18 +235,18 @@ std::pair<std::pair<int, int>, int> GridGraph::UpdateCost(std::vector<NDcost> &N
         // cout << ND.back().getX1() << " " << ND.back().getY1() << " "
         //      << ND.back().getX2() << " " << ND.back().getY2() << " "
         //      << ND.back().getValue() << endl;
-        // cout << "GridLen : " << GridLen<<std::endl;
+        // cout << "GridLen : " << GridLen << std::endl;
 
         std::pair<int, int> start2end;
         start2end.first = Pos2Num(std::pair<int, int>(ND.back().getX1(), ND.back().getY1()));
         start2end.second = Pos2Num(std::pair<int, int>(ND.back().getX2(), ND.back().getY2()));
-        // std::cout << "Start :\t" << start2end.first << "\t to " << start2end.second << std::endl;
+        std::cout << "Start :\t" << start2end.first << "\t to " << start2end.second << std::endl;
         std::pair<int, int> pos_start = Num2Pos(start2end.first);
         std::pair<int, int> pos_end = Num2Pos(start2end.second);
-        // std::cout << "(" << pos_start.first << "," << pos_start.second << ")" << std::endl;
-        // std::cout << "(" << pos_end.first << "," << pos_end.second << ")" << std::endl;
+        std::cout << "(" << pos_start.first << "," << pos_start.second << ")" << std::endl;
+        std::cout << "(" << pos_end.first << "," << pos_end.second << ")" << std::endl;
         int cost = ND.back().getValue();
-        // std::cout << "cost : " << cost << std::endl;
+        std::cout << "cost : " << cost << std::endl;
         ND.pop_back();
         return std::pair<std::pair<int, int>, int>(start2end, cost);
     }
@@ -287,4 +282,29 @@ void GridGraph::UpdateCost_fix(std::vector<NDcost> &ND)
     std::cout << "cnt : " << cnt << std::endl;
     std::cout << "=================================================" << std::endl;
     PAUSE;
+}
+
+void GridGraph::cal_cost(int Start)
+{
+    Initialize(Start);
+    // std::cout << "Adj Size : " << Adj.size() << std::endl;
+    int edg_limit = sqrt(V_num);
+    int Max = edg_limit * edg_limit;
+    // std::cout << "edg_limit : " << edg_limit << std::endl;
+    // std::cout << "Max : " << Max << std::endl;
+
+    for (int i = 0; i < Max; ++i)
+    {
+        for (std::list<std::pair<int, int>>::iterator itr = Adj[i].begin(); itr != Adj[i].end(); itr++)
+        {
+            Relaxation(i, (*itr).first, (*itr).second);
+            std::cout << "start  :" << i << std::setw(8) << "To : " << (*itr).first << std::setw(12) << "Distant : " << dis[(*itr).first] << std::endl;
+
+        }
+    }
+
+    // std::cout << "\nprint predecessor:\n";
+    // PrintDataArray(pi);
+    // std::cout << "\nprint distance:\n";
+    // PrintDataArray(dis);
 }

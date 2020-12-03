@@ -130,13 +130,13 @@ void mono ::output(int argc, char **argv, std::pair<std::vector<int>,int> array)
     std::pair<int, int> StartPos;
     std::pair<int, int> EndPos;
     fout << "RoutingCost "<< array.second << endl;
-    fout << "RoutingPath "<< array.first.size() << endl;
+    fout << "RoutingPath "<< array.first.size() -1 << endl;
 
-    for (int i = 0; i < array.first.size() - 1; i++)
+    for (int i = 1; i < array.first.size() - 1; i++)
     {
         StartPos = Num2Pos(array.first[i]);
         EndPos = Num2Pos(array.first[i + 1]);
-        if (i == 0)
+        if (i == 1)
         {
             fout << StartPos.first << std::setw(4) << StartPos.second << endl;
         }
