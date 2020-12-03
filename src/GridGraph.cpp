@@ -1,4 +1,9 @@
 #include "GridGraph.h"
+#define PAUSE                                     \
+    {                                             \
+        printf("Press Enter key to continue..."); \
+        fgetc(stdin);                             \
+    }
 void GridGraph::PrintDataArray(std::vector<int> array)
 {
     for (int i = 0; i < array.size(); i++)
@@ -77,9 +82,13 @@ void GridGraph::Dijkstra(int Start)
             // std::cout<<(*itr).first<<std::setw(4)<<dis[(*itr).first]<<std::endl;
             //updete tree when it change
             h.chgkey((*itr).first, dis[(*itr).first]);
-            std::cout<<"start  :"<<u<<std::setw(8)<<"To : "<<(*itr).first<<std::setw(12)<<"Distant : "<<dis[(*itr).first]<<std::endl;
+            std::cout << "start  :" << u << std::setw(8) << "To : " << (*itr).first << std::setw(12) << "Distant : " << dis[(*itr).first] << std::endl;
         }
     }
+    std::cout << "\nprint predecessor:\n";
+    PrintDataArray(pi);
+    std::cout << "\nprint distance:\n";
+    PrintDataArray(dis);
 }
 
 void GridGraph::ShowData(std::vector<int> array)
@@ -112,8 +121,9 @@ void GridGraph::ShowAdjInfo(int idx)
     //SysStop();
 }
 
-std::vector<int> GridGraph::GetPath(int end)
+std::pair<std::vector<int>, int> GridGraph::GetPath(int end)
 {
+    std::pair<std::vector<int>, int> result;
     int size = 1;
     bool Done = false;
     std::vector<int> Path;
@@ -124,7 +134,7 @@ std::vector<int> GridGraph::GetPath(int end)
     while (!Done)
     {
         Path.push_back(pi[Ev]);
-        //std::cout<<pi[Ev]<<std::endl;
+        std::cout << pi[Ev] << std::endl;
         if (pi[Ev] == StartVectex || pi[Ev] == -1)
         {
             size++;
@@ -141,7 +151,17 @@ std::vector<int> GridGraph::GetPath(int end)
 
     std::reverse(Path.begin(), Path.end());
     ShowData(Path);
-    return Path;
+
+    std::cout << "======================================" << std::endl;
+    for (int i = 0; i < dis.size(); i++)
+    {
+        cout << "dis[" << i << "]"
+             << "   " << dis[i] << endl;
+    }
+    std::cout << "======================================" << std::endl;
+    result.first = Path;
+    result.second = dis[dis.size() - 1];
+    return result;
 }
 
 std::pair<int, int> GridGraph::Num2Pos(int Num)
@@ -168,86 +188,10 @@ int GridGraph::Pos2Num(std::pair<int, int> pos)
     return pos.first * GridLen + pos.second;
 }
 
-void GridGraph::UpdateCost(std::vector<int> path)
-{
-    //PrintDataArray(path);
-    for (int i = 0; i < path.size() - 1; i++)
-    {
-        int start = path[i];
-        int End = path[i + 1];
-        for (std::list<std::pair<int, int>>::iterator itr = Adj[start].begin(); itr != Adj[start].end(); itr++)
-        {
-
-            if ((*itr).first == End)
-            {
-                (*itr).second += 10;
-                //start to end add cost
-                if ((*itr).second > 10 * capacity)
-                {
-                    (*itr).second += 10000;
-                    //std::cout<<"Close th path : " <<start<<std::setw(4)<<End<<std::endl;
-                    ++ClosePathCnt;
-                }
-                //end to start add cost
-                //std::cout<<"Update : "<<start<<std::setw(4)<<End<<std::setw(4)<<"    Cost : "<<(*itr).second<<std::endl;
-                break;
-            }
-        }
-        for (std::list<std::pair<int, int>>::iterator itr = Adj[End].begin(); itr != Adj[End].end(); itr++)
-        {
-
-            if ((*itr).first == start)
-            {
-                (*itr).second += 10;
-                //start to end add cost
-                if ((*itr).second > 10 * capacity)
-                {
-                    (*itr).second += 10000;
-                    //std::cout<<"Close th path : " <<start<<std::setw(4)<<End<<std::endl;
-                    ++ClosePathCnt;
-                }
-                //end to start add cost
-                //std::cout<<"Update : "<<End<<std::setw(4)<<start<<std::setw(4)<<"    Cost : "<<(*itr).second<<std::endl;
-                break;
-            }
-        }
-        //ShowAdjInfo(start);
-        //std::cout<<std::endl;
-    }
-}
-
-void GridGraph::GetCap(int Cap)
-{
-    //std::cout<<Cap<<std::endl;
-    capacity = Cap;
-}
-
-void GridGraph::CheckOverFlow()
-{
-
-    for (int i = 0; i < Adj.size(); i++)
-    {
-        for (std::list<std::pair<int, int>>::iterator itr = Adj[i].begin(); itr != Adj[i].end(); itr++)
-        {
-
-            if ((*itr).second > 10000 * 2)
-            {
-                std::cout << "--------------------------------------------------------------------------------" << std::endl;
-                std::cout << "Start " << i << " to " << (*itr).first << " overflow Weight : " << (*itr).second << std::endl;
-                std::cout << "--------------------------------------------------------------------------------" << std::endl;
-            }
-
-            //std::cout<<"Start "<<i<<" to "<<(*itr).first<<" Weight : "<<(*itr).second<<std::endl;
-        }
-    }
-}
-
 void GridGraph::Getgridconncet(std::vector<NDcost> ND)
 {
     int edg_limit = sqrt(V_num);
     int Max = edg_limit * edg_limit;
-
-    std::pair<std::pair<int, int>, int> Top_cost = UpdateCost(ND);
 
     for (int i = 0; i < Max; ++i)
     {
@@ -256,52 +200,36 @@ void GridGraph::Getgridconncet(std::vector<NDcost> ND)
             //check is it a edge of grid
             if ((i + 1) % edg_limit)
             {
-                int extra_cost = 0;
-
-                if (Top_cost.first.first == i && Top_cost.first.second == i + 1)
-                {
-                    extra_cost = Top_cost.second;
-                    // cout << Top_cost.first.first << " " << Top_cost.first.second << " "
-                    //      << Top_cost.second << endl;
-                    Top_cost = UpdateCost(ND);
-
-                }
-                this->AddConnection(i, i + 1, mono::default_cost + extra_cost);
+                this->AddConnection(i, i + 1, mono::default_cost);
 
                 std::pair<int, int> pos_start = Num2Pos(i);
                 std::pair<int, int> pos_end = Num2Pos(i + 1);
-                // std::cout << "i :\t" << i << "\t connect to " << i + 1 << std::endl;
-                // std::cout << "(" << pos_start.first << "," << pos_start.second << ")" << std::endl;
-                // std::cout << "(" << pos_end.first << "," << pos_end.second << ")" << std::endl;
-                // std::cout << "Cost : " << mono::default_cost + extra_cost << std::endl;
-                // std::cout << "=================================================" << std::endl;
+                std::cout << "i :\t" << i << "\t connect to " << i + 1 << std::endl;
+                std::cout << "(" << pos_start.first << "," << pos_start.second << ")" << std::endl;
+                std::cout << "(" << pos_end.first << "," << pos_end.second << ")" << std::endl;
+                std::cout << "Cost : " << mono::default_cost << std::endl;
             }
             //i have a neighbor and cost is init 1
             //------------------------------------
             if (i + edg_limit < Max)
             {
-                int extra_cost = 0;
 
-                if (Top_cost.first.first == i && Top_cost.first.second == i + edg_limit)
-                {
-                    extra_cost = Top_cost.second;
-                    // cout << Top_cost.first.first << " " << Top_cost.first.second << " "
-                    //      << Top_cost.second << endl;
-                    Top_cost = UpdateCost(ND);
-
-                }
-                this->AddConnection(i, i + edg_limit, mono::default_cost + extra_cost);
+                this->AddConnection(i, i + edg_limit, mono::default_cost);
 
                 std::pair<int, int> pos_start = Num2Pos(i);
                 std::pair<int, int> pos_end = Num2Pos(i + edg_limit);
-                // std::cout << "i :\t" << i << "\t connect to " << i + edg_limit << std::endl;
-                // std::cout << "(" << pos_start.first << "," << pos_start.second << ")" << std::endl;
-                // std::cout << "(" << pos_end.first << "," << pos_end.second << ")" << std::endl;
-                // std::cout << "Cost : " << mono::default_cost + extra_cost << std::endl;
-                // std::cout << "=================================================" << std::endl;
+                std::cout << "i :\t" << i << "\t connect to " << i + edg_limit << std::endl;
+                std::cout << "(" << pos_start.first << "," << pos_start.second << ")" << std::endl;
+                std::cout << "(" << pos_end.first << "," << pos_end.second << ")" << std::endl;
+                std::cout << "Cost : " << mono::default_cost << std::endl;
+
+                std::cout << "=================================================" << std::endl;
             }
+
+            // std::pair<std::pair<int, int>, int> Top_cost = UpdateCost(ND);
         }
     }
+    UpdateCost_fix(ND);
 }
 
 std::pair<std::pair<int, int>, int> GridGraph::UpdateCost(std::vector<NDcost> &ND)
@@ -333,4 +261,30 @@ std::pair<std::pair<int, int>, int> GridGraph::UpdateCost(std::vector<NDcost> &N
 
         return std::pair<std::pair<int, int>, int>(std::pair<int, int>(0, 0), 0);
     }
+}
+
+void GridGraph::UpdateCost_fix(std::vector<NDcost> &ND)
+{
+    int cnt = 0;
+    while (ND.size() != 0)
+    {
+        int St = Pos2Num(std::pair<int, int>(ND.back().getX1(), ND.back().getY1()));
+        int To = Pos2Num(std::pair<int, int>(ND.back().getX2(), ND.back().getY2()));
+        int cost = ND.back().getValue();
+        for (std::list<std::pair<int, int>>::iterator itr = Adj[St].begin(); itr != Adj[St].end(); itr++)
+        {
+            if ((*itr).first == To)
+            {
+                (*itr).second += cost;
+                cout << "Update start \t" << St << "\tTo\t" << To << "\tCost\t" << (*itr).second << std::endl;
+                cnt++;
+            }
+        }
+        ND.pop_back();
+    }
+
+    std::cout << "=================================================" << std::endl;
+    std::cout << "cnt : " << cnt << std::endl;
+    std::cout << "=================================================" << std::endl;
+    PAUSE;
 }

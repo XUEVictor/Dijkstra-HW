@@ -8,6 +8,7 @@
 
 #include "heap.h"
 #include "parser.h"
+
 class GridGraph
 {
 private:
@@ -26,19 +27,18 @@ public:
         GridLen = sqrt(V_num);
         //std::cout<<GridLen<<std::endl;
     }
-    std::vector<int> GetPath(int end);
+    std::pair<std::vector<int>,int> GetPath(int end);
     void AddConnection(int from, int to, int weight);
     void ShowAdjInfo(int idx);
     void ShowData(std::vector<int> array);
     void PrintDataArray(std::vector<int> array);
     void Initialize(int Start);
     void Relaxation(int X, int Y, int weight);
-    void GetCap(int Cap);
     void Dijkstra(int Start = 0);
     std::pair<int, int> Num2Pos(int Num); // Return Grid position
     int Pos2Num(std::pair<int, int> Pos); // Return num position
-    void UpdateCost(std::vector<int> path);
-    void CheckOverFlow();
+    void UpdateCost_fix(std::vector<NDcost> &ND);
     void Getgridconncet(std::vector<NDcost> ND);
     std::pair<std::pair<int, int>,int> UpdateCost(std::vector<NDcost>& ND);
+    
 };

@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=c++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ivam/Downloads/pa1_resources/include 
+CXX_INCLUDES = -I/home/ivam/HW/Dijkstra-HW/include 
 

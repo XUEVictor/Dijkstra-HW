@@ -5,15 +5,15 @@ CMakeFiles/PA1.dir/src/GridGraph.cpp.o
  ../include/GridGraph.h
  ../include/heap.h
  ../include/parser.h
- /home/ivam/Downloads/pa1_resources/src/GridGraph.cpp
+ /home/ivam/HW/Dijkstra-HW/src/GridGraph.cpp
 CMakeFiles/PA1.dir/src/heap.cpp.o
  ../include/heap.h
- /home/ivam/Downloads/pa1_resources/src/heap.cpp
+ /home/ivam/HW/Dijkstra-HW/src/heap.cpp
 CMakeFiles/PA1.dir/src/main.cpp.o
  ../include/GridGraph.h
  ../include/heap.h
  ../include/parser.h
- /home/ivam/Downloads/pa1_resources/src/main.cpp
+ /home/ivam/HW/Dijkstra-HW/src/main.cpp
 CMakeFiles/PA1.dir/src/parser.cpp.o
  ../include/parser.h
- /home/ivam/Downloads/pa1_resources/src/parser.cpp
+ /home/ivam/HW/Dijkstra-HW/src/parser.cpp

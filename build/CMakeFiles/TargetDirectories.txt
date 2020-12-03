@@ -1,3 +1,3 @@
-/home/ivam/Downloads/pa1_resources/build/CMakeFiles/rebuild_cache.dir
-/home/ivam/Downloads/pa1_resources/build/CMakeFiles/PA1.dir
-/home/ivam/Downloads/pa1_resources/build/CMakeFiles/edit_cache.dir
+/home/ivam/HW/Dijkstra-HW/build/CMakeFiles/rebuild_cache.dir
+/home/ivam/HW/Dijkstra-HW/build/CMakeFiles/PA1.dir
+/home/ivam/HW/Dijkstra-HW/build/CMakeFiles/edit_cache.dir

@@ -111,9 +111,10 @@ void mono ::routing()
     return;
 }
 
-void mono ::output(int argc, char **argv)
+void mono ::output(int argc, char **argv, std::pair<std::vector<int>,int> array)
 {
     fstream fout;
+
     fout.open(argv[2], fstream::out);
 
     if (!fout.is_open())
@@ -126,9 +127,39 @@ void mono ::output(int argc, char **argv)
     //////////////////write your output///////////////////////
     //////////////////////////////////////////////////////////
 
-    fout << "Hellow world!" << endl;
+    std::pair<int, int> StartPos;
+    std::pair<int, int> EndPos;
+    fout << "RoutingCost "<< array.second << endl;
+    fout << "RoutingPath "<< array.first.size() << endl;
+
+    for (int i = 0; i < array.first.size() - 1; i++)
+    {
+        StartPos = Num2Pos(array.first[i]);
+        EndPos = Num2Pos(array.first[i + 1]);
+        if (i == 0)
+        {
+            fout << StartPos.first << std::setw(4) << StartPos.second << endl;
+        }
+
+        fout << EndPos.first << std::setw(4) << EndPos.second << std::endl;
+        // std::cout << StartPos.first << std::setw(4) << StartPos.second << std::setw(4)
+        //           << EndPos.first << std::setw(4) << EndPos.second << std::endl;
+    }
 
     fout.close();
 
     return;
+}
+std::pair<int, int> mono::Num2Pos(int Num)
+{
+    //std::cout<<Num<<std::endl;
+    //std::cout<<GridLen<<std::endl;
+    //std::cout<<(Num / GridLen)<<std::endl;
+    int GridLen = this->Bx2 + 1;
+    std::pair<int, int> Pos;
+    Pos.first = Num / GridLen;
+    //std::cout<<Pos.first<<std::setw(4);
+    Pos.second = Num % GridLen;
+    //std::cout<<Pos.second<<std::setw(4)<<std::endl;
+    return Pos;
 }
