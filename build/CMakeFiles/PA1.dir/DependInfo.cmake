@@ -4,10 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ivam/HW/Dijkstra-HW2/src/GridGraph.cpp" "/home/ivam/HW/Dijkstra-HW2/build/CMakeFiles/PA1.dir/src/GridGraph.cpp.o"
-  "/home/ivam/HW/Dijkstra-HW2/src/heap.cpp" "/home/ivam/HW/Dijkstra-HW2/build/CMakeFiles/PA1.dir/src/heap.cpp.o"
-  "/home/ivam/HW/Dijkstra-HW2/src/main.cpp" "/home/ivam/HW/Dijkstra-HW2/build/CMakeFiles/PA1.dir/src/main.cpp.o"
-  "/home/ivam/HW/Dijkstra-HW2/src/parser.cpp" "/home/ivam/HW/Dijkstra-HW2/build/CMakeFiles/PA1.dir/src/parser.cpp.o"
+  "/home/ivam/HW/src/main.cpp" "/home/ivam/HW/build/CMakeFiles/PA1.dir/src/main.cpp.o"
+  "/home/ivam/HW/src/parser.cpp" "/home/ivam/HW/build/CMakeFiles/PA1.dir/src/parser.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

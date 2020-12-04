@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/PA1.dir/src/GridGraph.cpp.o"
-  "CMakeFiles/PA1.dir/src/heap.cpp.o"
   "CMakeFiles/PA1.dir/src/main.cpp.o"
   "CMakeFiles/PA1.dir/src/parser.cpp.o"
   "PA1.pdb"

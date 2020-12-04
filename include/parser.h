@@ -9,6 +9,9 @@
 #include <cstring>
 #include <cmath>
 #include <string>
+#include <list>
+#include <climits>
+#include <algorithm>
 
 using namespace std;
 
@@ -43,9 +46,16 @@ public:
     /////////////////////////////functions/////////////////////////////
 
     void parser(int argc, char **argv);
-    void routing();
-    void output(int argc, char **argv, std::pair<std::vector<int>, int> array);
-    std::pair<int, int> Num2Pos(int Num);
+    void routing(int argc, char **argv);
+    void output(int argc, char **argv);
+    void Add_Connect(int size);
+    void UpdateCost_fix();
+    void AddConnection(std::pair<int, int> from, std::pair<int, int> to, int weight);
+    void Init(std::pair<int, int> start);
+    void cal_cost(std::pair<int, int> start);
+    void Relaxation(std::pair<int, int> from, std::pair<int, int> to, int weight);
+    std::pair<std::vector<std::pair<int, int>>, int> GetPath(std::pair<int, int> end);
+
     /////////////////////////////declaration/////////////////////////////
 
     //boundary x1 y1 x2 y2
@@ -55,11 +65,16 @@ public:
     int By2;
 
     //default cost
-    static int default_cost;
-
+    int default_cost;
+    int size;
     //non default cost
     vector<NDcost> NDcosts;
-
+    std::vector<std::vector<int>> dis;                  //存放node cost
+    std::vector<std::vector<std::pair<int, int>>> prev; //存放座標
+    std::vector<std::vector<std::list<std::pair<std::pair<int, int>, int>>>> Adj;
+    std::pair<int, int> StartNode = make_pair(-1, -1);
+    std::pair<std::vector<std::pair<int, int>>, int> Result_path;
+    
     //start x y;
     int sx;
     int sy;
@@ -67,6 +82,8 @@ public:
     //target x y;
     int tx;
     int ty;
+
+    const int int_max = INT_MAX;
 };
 
 #endif // PARSER_H

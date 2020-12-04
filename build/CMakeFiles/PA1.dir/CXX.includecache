@@ -6,32 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../include/GridGraph.h
-vector
--
-list
--
-cmath
--
-iostream
--
-iomanip
--
-climits
--
-algorithm
--
-heap.h
-../include/heap.h
-parser.h
-../include/parser.h
-
-../include/heap.h
-vector
--
-string
--
-
 ../include/parser.h
 iostream
 -
@@ -49,34 +23,18 @@ cmath
 -
 string
 -
-
-/home/ivam/HW/Dijkstra-HW2/src/GridGraph.cpp
-GridGraph.h
-/home/ivam/HW/Dijkstra-HW2/src/GridGraph.h
-
-/home/ivam/HW/Dijkstra-HW2/src/heap.cpp
-iostream
+list
 -
-vector
--
-iterator
+climits
 -
 algorithm
 -
-string
--
-sstream
--
-heap.h
-/home/ivam/HW/Dijkstra-HW2/src/heap.h
 
-/home/ivam/HW/Dijkstra-HW2/src/main.cpp
+/home/ivam/HW/src/main.cpp
 parser.h
-/home/ivam/HW/Dijkstra-HW2/src/parser.h
-GridGraph.h
-/home/ivam/HW/Dijkstra-HW2/src/GridGraph.h
+/home/ivam/HW/src/parser.h
 
-/home/ivam/HW/Dijkstra-HW2/src/parser.cpp
+/home/ivam/HW/src/parser.cpp
 parser.h
-/home/ivam/HW/Dijkstra-HW2/src/parser.h
+/home/ivam/HW/src/parser.h
 

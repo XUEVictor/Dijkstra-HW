@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ivam/HW/Dijkstra-HW2
+CMAKE_SOURCE_DIR = /home/ivam/HW
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ivam/HW/Dijkstra-HW2/build
+CMAKE_BINARY_DIR = /home/ivam/HW/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivam/HW/Dijkstra-HW2/build/CMakeFiles /home/ivam/HW/Dijkstra-HW2/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivam/HW/build/CMakeFiles /home/ivam/HW/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivam/HW/Dijkstra-HW2/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivam/HW/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,60 +122,6 @@ PA1: cmake_check_build_system
 PA1/fast:
 	$(MAKE) -f CMakeFiles/PA1.dir/build.make CMakeFiles/PA1.dir/build
 .PHONY : PA1/fast
-
-src/GridGraph.o: src/GridGraph.cpp.o
-
-.PHONY : src/GridGraph.o
-
-# target to build an object file
-src/GridGraph.cpp.o:
-	$(MAKE) -f CMakeFiles/PA1.dir/build.make CMakeFiles/PA1.dir/src/GridGraph.cpp.o
-.PHONY : src/GridGraph.cpp.o
-
-src/GridGraph.i: src/GridGraph.cpp.i
-
-.PHONY : src/GridGraph.i
-
-# target to preprocess a source file
-src/GridGraph.cpp.i:
-	$(MAKE) -f CMakeFiles/PA1.dir/build.make CMakeFiles/PA1.dir/src/GridGraph.cpp.i
-.PHONY : src/GridGraph.cpp.i
-
-src/GridGraph.s: src/GridGraph.cpp.s
-
-.PHONY : src/GridGraph.s
-
-# target to generate assembly for a file
-src/GridGraph.cpp.s:
-	$(MAKE) -f CMakeFiles/PA1.dir/build.make CMakeFiles/PA1.dir/src/GridGraph.cpp.s
-.PHONY : src/GridGraph.cpp.s
-
-src/heap.o: src/heap.cpp.o
-
-.PHONY : src/heap.o
-
-# target to build an object file
-src/heap.cpp.o:
-	$(MAKE) -f CMakeFiles/PA1.dir/build.make CMakeFiles/PA1.dir/src/heap.cpp.o
-.PHONY : src/heap.cpp.o
-
-src/heap.i: src/heap.cpp.i
-
-.PHONY : src/heap.i
-
-# target to preprocess a source file
-src/heap.cpp.i:
-	$(MAKE) -f CMakeFiles/PA1.dir/build.make CMakeFiles/PA1.dir/src/heap.cpp.i
-.PHONY : src/heap.cpp.i
-
-src/heap.s: src/heap.cpp.s
-
-.PHONY : src/heap.s
-
-# target to generate assembly for a file
-src/heap.cpp.s:
-	$(MAKE) -f CMakeFiles/PA1.dir/build.make CMakeFiles/PA1.dir/src/heap.cpp.s
-.PHONY : src/heap.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -240,12 +186,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... PA1"
 	@echo "... edit_cache"
-	@echo "... src/GridGraph.o"
-	@echo "... src/GridGraph.i"
-	@echo "... src/GridGraph.s"
-	@echo "... src/heap.o"
-	@echo "... src/heap.i"
-	@echo "... src/heap.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
